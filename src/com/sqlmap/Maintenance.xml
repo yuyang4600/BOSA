@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.Maintenance">
+	
+	<select id="selectBrand" resultType="String">
+		select brand from main_brand
+	</select>
+	
+	<select id="selectCooling_mode" resultType="String">
+		select options from air_compressor where name='unit_cooling_mode'
+	</select>
+	
+	<select id="selectUnit_model" resultType="String">
+		SELECT OPTIONS FROM air_compressor WHERE `name`='unit_model' and brand_no='1'
+	</select>
+	
+	
+	<select id="selectProduction_date" resultType="String">
+		select options from air_compressor where name='Unit_date'
+	</select>
+	
+	<select id="selectExhaust_pressure" resultType="String">
+		select DISTINCT options from air_compressor where name='exhaust_pressure' order by OPTIONS+0
+	</select>
+	
+	<select id="selectFirst_handpiece_time" resultType="String">
+		select options from air_compressor where name='first_handpiece_time'
+	</select>
+	
+	<select id="selectSecond_handpiece_time" resultType="String">
+		select options from air_compressor where name='second_handpiece_time'
+	</select>
+	
+	<select id="selectHandpiece_serial_no" resultType="String">
+		select options from air_compressor where name='handpiece_serial_no'
+	</select>
+	
+	<select id="selectCrew_serial_no" resultType="String">
+		select options from air_compressor where name='crew_serial_no'
+	</select>
+	
+	<select id="selectFault_info" resultType="String">
+		select options from fault_info where name='fault_option'
+	</select>
+	
+	<select id="selectPrice" parameterType="String" resultType="com.po.Air_compressor">
+		select price_first, price_second from air_compressor where options=#{unit_model}
+	</select>
+	
+	<insert id="insertAll_info" parameterType="com.po.All_info">
+		INSERT INTO fill_formation(brand, cooling_mode, unit_model, production_date, exhaust_pressure, first_handpiece_time, second_handpiece_time, handpiece_serial_no, crew_serial_number, first_exhaust_temperature, second_exhaust_temperature, first_exhaust_pressure, second_exhaust_pressure, lubricating_oil_temperature, lubricating_oil_pressure,  cooling_water_in_temperature, cooling_water_out_temperature, enterprise, contact_name, phone_number, wechat_number, QQ, job, duties, fault_info) 
+		VALUES(#{brand}, #{cooling_mode}, #{unit_model}, #{production_date}, #{exhaust_pressure}, #{first_handpiece_time}, #{second_handpiece_time}, #{handpiece_serial_no}, #{crew_serial_number}, #{first_exhaust_temperature}, #{second_exhaust_temperature}, #{first_exhaust_pressure}, #{second_exhaust_pressure}, #{lubricating_oil_temperature}, #{lubricating_oil_pressure}, #{cooling_water_in_temperature}, #{cooling_water_out_temperature}, #{enterprise}, #{contact_name}, #{phone_number}, #{wechat_number}, #{QQ}, #{job}, #{duties}, #{fault_info})
+	</insert>
+	
+	<insert id="saveFeedback" parameterType="com.po.Feedback">
+		insert into feedback(feedback, phone) values(#{feedback_text}, #{phone_number})
+	</insert>
+	
+	<select id="selectUnit_model_A" resultType="String">
+		select options from air_compressor where brand_no='1' and (name='unit_model' or name='unit_model_ZR')
+	</select>
+	
+	<select id="selectUnit_model_S" resultType="String">
+		select options from air_compressor where brand_no='2' and name='unit_model'
+	</select>
+	
+	<select id="selectUnit_model_G" resultType="String">
+		select options from air_compressor where brand_no='3' and name='unit_model'
+	</select>
+	
+	<select id="selectUnit_model_C" resultType="String">
+		select options from air_compressor where brand_no='1' and name='unit_model'
+	</select>
+	
+	<select id="selectUnit_model_SL" resultType="String">
+		select options from air_compressor where brand_no='1' and name='unit_model_ZR'
+	</select>
+</mapper>

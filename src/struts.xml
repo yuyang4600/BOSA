@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.locale" value="zh_CN"></constant>
+	<constant name="struts.i18n.encoding" value="utf-8"></constant>
+	
+	<constant name="struts.custom.i18n.resources" value="/Internationalization/message"></constant>
+	
+	
+	<package name="default" namespace="/" extends="struts-default" >
+		<default-action-ref name="maintenanceAction"></default-action-ref>
+		<action name="maintenanceAction" class="com.action.MaintenanceAction" method="find_options">
+			<result>Maintenance.jsp</result>
+		</action>
+		
+		<action name="saveMaintenanceAction" class="com.action.MaintenanceAction" method="save_info">
+			<result type="chain">maintenanceAction</result>
+		</action>
+		
+		<action name="feedbackAction" class="com.action.MaintenanceAction" method="feedback">
+			<result>/feedback.jsp</result>
+		</action>
+		
+		<!--  
+		<action name="successCaseAction" class="com.action.MaintenanceAction" method="successCase">
+			<result>/successCase.jsp</result>
+		</action>
+		
+		<action name="standard_processAction" class="com.action.MaintenanceAction" method="standard_process">
+			<result>/standard_process.jsp</result>
+		</action>
+		
+		<action name="studioAction" class="com.action.MaintenanceAction" method="studio">
+			<result>/studio.jsp</result>
+		</action>
+		-->
+		<action name="ajax_brand" class="com.action.MaintenanceAction" method="ajax_brand">
+			
+		</action>
+		
+		<action name="ajax_cooling_mode" class="com.action.MaintenanceAction" method="ajax_cooling_mode">
+			
+		</action>
+	</package>
+	
+	
+</struts>
