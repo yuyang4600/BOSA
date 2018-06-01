@@ -23,3 +23,8 @@ CREATE TABLE `feedback` (
   `feedback` text COMMENT '意见反馈',
   `phone` varchar(20) DEFAULT NULL COMMENT '手机号码'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*
+THIS IS A TEST
+*/
+
+TESTTEST
